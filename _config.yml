@@ -1,7 +1,3 @@
-# Dependencies
-markdown:         kramdown
-highlighter:      rouge
-
 # Permalinks
 permalink:        pretty
 
@@ -12,13 +8,23 @@ description:      'A blog mostly about mobile development in Swift, with occasio
 url:              https://amg1976.github.io
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name:           'Adriano Goncalves'
+  url:            https://twitter.com/amg1976
 
-paginate:         5
+paginate:         1
+
+jekyll-archives:
+  enabled:
+    - year
+    - month
+  layouts:
+    year: archive-year
+    month: archive-month  
+  permalinks:
+    year: '/archives/:year/'
+    month: '/archives/:year/:month/'
 
 # Custom vars
 version:          2.0.0
-
 github:
   repo:           https://github.com/poole/hyde

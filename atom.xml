@@ -11,6 +11,7 @@ layout: nil
  <updated>{{ site.time | date_to_xmlschema }}</updated>
  <id>{{ site.url }}</id>
  <author>
+   <foo>{{ site.xpto }}</foo>
    <name>{{ site.author.name }}</name>
    <email>{{ site.author.email }}</email>
  </author>
