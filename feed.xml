@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.0">Jekyll</generator><link href="https://amg1976.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://amg1976.github.io/" rel="alternate" type="text/html" /><updated>2017-06-27T15:26:59+01:00</updated><id>https://amg1976.github.io/</id><title type="html">Adri</title><subtitle>A blog mostly about mobile development in Swift, with occasional rumblings in other subjects</subtitle><author><name>Adriano Goncalves</name></author><entry><title type="html">WWDC 2017 - what to expect</title><link href="https://amg1976.github.io/blog/2017/06/02/what-to-expect-wwdc-2017/" rel="alternate" type="text/html" title="WWDC 2017 - what to expect" /><published>2017-06-02T22:00:00+01:00</published><updated>2017-06-02T22:00:00+01:00</updated><id>https://amg1976.github.io/blog/2017/06/02/what-to-expect-wwdc-2017</id><content type="html" xml:base="https://amg1976.github.io/blog/2017/06/02/what-to-expect-wwdc-2017/">&lt;p&gt;It’s almost that time of the year where the Apple developers community has its biggest event - the WWDC.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.0">Jekyll</generator><link href="https://amg1976.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://amg1976.github.io/" rel="alternate" type="text/html" /><updated>2017-06-28T18:39:53+01:00</updated><id>https://amg1976.github.io/</id><title type="html">Adri</title><subtitle>A blog mostly about mobile development in Swift, with occasional rumblings in other subjects</subtitle><author><name>Adriano Goncalves</name></author><entry><title type="html">WWDC 2017 - lot’s of goodies</title><link href="https://amg1976.github.io/blog/2017/06/28/wwdc-2017-review/" rel="alternate" type="text/html" title="WWDC 2017 - lot's of goodies" /><published>2017-06-28T17:00:00+01:00</published><updated>2017-06-28T17:00:00+01:00</updated><id>https://amg1976.github.io/blog/2017/06/28/wwdc-2017-review</id><content type="html" xml:base="https://amg1976.github.io/blog/2017/06/28/wwdc-2017-review/">&lt;p&gt;A couple of weeks have gone by since the closing curtains on this years WWDC, and in my opinion, what a great event it was.&lt;/p&gt;
+
+&lt;p&gt;Now, I still need to catch up with some of the session videos, but having seen most of the ones in my playlist, there are some considerations that I’m ready to make.&lt;/p&gt;
+
+&lt;h3 id=&quot;did-i-got-my-predictions-right&quot;&gt;Did I got my predictions right?&lt;/h3&gt;
+&lt;p&gt;If you missed my previous &lt;a href=&quot;/2017-06-02-what-to-expect-wwdc-2017&quot;&gt;post&lt;/a&gt;, I tried with my guessing hat to come up with some predictions of what Apple have been preparing for us, and I’m glad they were spot on.&lt;/p&gt;
+
+&lt;h5 id=&quot;swift-refactoring-tools-on-xcode&quot;&gt;Swift refactoring tools on Xcode&lt;/h5&gt;
+&lt;p&gt;Finally we have Swift refactoring in Xcode 9. Available since the first beta, they even got improved with the second beta, either by fixing issues or by adding new refactorings.&lt;/p&gt;
+
+&lt;h5 id=&quot;real-multitasking-on-ipad&quot;&gt;Real multitasking on iPad&lt;/h5&gt;
+&lt;p&gt;This year the iPad received  most of the love. Not that the new multitasking features don’t work on the iPhone, they are of course far less usable (or not available at all) than on devices with bigger screens. It shows that Apple engineers invested a lot of time on this, not only for all the features but how easy it looks to use them in our apps.&lt;/p&gt;
+
+&lt;h3 id=&quot;predictions-from-other-people-obviously-much-clever-than-me&quot;&gt;Predictions from other people, obviously much clever than me&lt;/h3&gt;
+
+&lt;h5 id=&quot;siri-speaker&quot;&gt;Siri Speaker&lt;/h5&gt;
+&lt;p&gt;It will only be available in six months time, so what was available were prototypes (probably very close to the final version). Even though, the general comments are that it is a pretty solid device, with excellent sound quality.&lt;/p&gt;
+
+&lt;h5 id=&quot;new-ipad-pro-105-inch&quot;&gt;New iPad Pro 10.5-inch&lt;/h5&gt;
+&lt;p&gt;I only had the chance to play with a 1st gen iPad Pro with a Pencil a couple of weeks ago, but boy, was that fun! The responsiveness of the Pencil together with all that screen estate, coupled with a few well implemented apps made me feel like I was an artist (which I’m obviously not). This new iPad Pro, which I had the opportunity to see live already, looks like a perfect combination of power with usability, and together with the new features from iOS 11, I bet it will bump the sales for sure.&lt;/p&gt;
+
+&lt;h5 id=&quot;new-layout-of-the-iphones-back-side&quot;&gt;New layout of the iPhones back side&lt;/h5&gt;
+&lt;p&gt;This one is still to be confirmed, and I haven’t seen or read anything that points to it being a thing, so it remains to be proved.&lt;/p&gt;
+
+&lt;h5 id=&quot;dark-mode&quot;&gt;Dark mode&lt;/h5&gt;
+&lt;p&gt;So, it’s not a full dark mode, it’s a feature called “Smart Invert Colors” and it looks like it’s applying a dark background instead of a white one, maintaining the remaining colors. Again, need to have a device with it to properly test it, but it looks like a good start to a full dark theme.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-stuff-i-didnt-remember-or-even-thought-it-would-be-possible-to-happen&quot;&gt;Other stuff I didn’t remember or even thought it would be possible to happen&lt;/h3&gt;
+
+&lt;h4 id=&quot;wireless-debugging-and-multiple-simulators&quot;&gt;Wireless debugging and multiple simulators&lt;/h4&gt;
+&lt;p&gt;This one was a surprise to me, specially because it makes so much sense and still, it was out of my radar for quite some time now. Remote debugging will only work with devices on iOS 11 but you can take advantage of multiple simulators right from Xcode beta 1.&lt;/p&gt;
+
+&lt;h4 id=&quot;improved-app-switcher-and-control-center&quot;&gt;Improved app switcher and Control Center&lt;/h4&gt;
+&lt;p&gt;I have yet to install iOS 11 on a device, but the first impression I got when watching the session where it was introduced was that… I didn’t like it 😔&lt;/p&gt;
+
+&lt;p&gt;First, having the ability to select which items to show on Control Center, together with app switcher on the iPad seems like an overflow of information. I guess Erica Sadun phrased it better than me on this blog &lt;a href=&quot;http://ericasadun.com/2017/06/23/holy-war-why-i-utterly-loathe-the-new-app-switcher-in-ios-11/&quot;&gt;post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Some of my colleagues like it, so I will wait until I have upgraded my device to give a proper opinion.&lt;/p&gt;
+
+&lt;p&gt;And that’s it, it was a great event, with lots of new and cool stuff, that I can’t wait to put my hands on!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;PS: is it just me, or the actual presentations were not up to the higher standards that we are used to in these events? They didn’t seem well prepared, lots of hesitations from the presenters… by all means, this is not a critic - specially from me, as I’m a terrible public presenter! - just a small comment, as we know Apple always try to have flawless presentations.&lt;/em&gt;&lt;/p&gt;</content><author><name>Adriano Goncalves</name></author><summary type="html">A couple of weeks have gone by since the closing curtains on this years WWDC, and in my opinion, what a great event it was.</summary></entry><entry><title type="html">WWDC 2017 - what to expect</title><link href="https://amg1976.github.io/blog/2017/06/02/what-to-expect-wwdc-2017/" rel="alternate" type="text/html" title="WWDC 2017 - what to expect" /><published>2017-06-02T22:00:00+01:00</published><updated>2017-06-02T22:00:00+01:00</updated><id>https://amg1976.github.io/blog/2017/06/02/what-to-expect-wwdc-2017</id><content type="html" xml:base="https://amg1976.github.io/blog/2017/06/02/what-to-expect-wwdc-2017/">&lt;p&gt;It’s almost that time of the year where the Apple developers community has its biggest event - the WWDC.&lt;/p&gt;
 
 &lt;p&gt;This year as usual, the expectation is around what new features the latest version of iOS will bring us, and maybe some hints to what is the future in terms of devices.&lt;/p&gt;
 
