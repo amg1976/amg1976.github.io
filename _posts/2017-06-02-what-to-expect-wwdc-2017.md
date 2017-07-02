@@ -3,6 +3,7 @@ layout: post
 title:  "WWDC 2017 - what to expect"
 date:   2017-06-02 21:00:00 +0000
 categories: blog
+tags: wwdc siri speaker xcode ipad swift refactoring
 ---
 It's almost that time of the year where the Apple developers community has its biggest event - the WWDC.
 
