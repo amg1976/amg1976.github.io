@@ -2,7 +2,7 @@
 layout: post
 title: Xcode and the case of the missing protocol methods
 categories: blog
-tags: xcode stack trace nil any mock protocols subclassing
+tags: [xcode, stack trace, nil, any, mock, protocols, subclassing, unit tests]
 date: 2017-07-03 22:30:00 +0000
 ---
 A few days ago I run into an odd issue, where I was trying to mock UserDefaults, in order to add some unit tests to a class in our app. I went with this approach as at the time it looked like the easiest approach, so I could add the unit tests and at the same time I didn't need to immediately change the implementation of the class, as it depends directly on the UserDefaults class. Sure, maybe the best option probably would have been defining a protocol with the methods we use in that class, and then the changes on the class would be minimal, but the fact was that it looked like the quick and easiest option to go with at the time.
