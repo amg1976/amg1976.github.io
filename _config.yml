@@ -12,6 +12,7 @@ author:
   url:            https://twitter.com/amg1976
 
 paginate:         1
+paginate_path:    "/blog/page:num/"
 
 jekyll-archives:
   enabled:
@@ -19,7 +20,7 @@ jekyll-archives:
     - month
   layouts:
     year: archive-year
-    month: archive-month  
+    month: archive-month
   permalinks:
     year: '/archives/:year/'
     month: '/archives/:year/:month/'
