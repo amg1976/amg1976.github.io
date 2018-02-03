@@ -1,9 +1,23 @@
 jekyll build
+
 rm -rf /tmp/jekyll
 cp -rf ./_site /tmp/jekyll
+rm -rf /tmp/jekyll/bin
+
 git checkout master
 git pull
+
+rm -rf ./404
+rm -rf ./about
+rm -rf ./archives
+rm -rf ./blog
+rm -rf ./public
+rm ./*.*ml
+rm ./LICENSE.md
+rm ./styles.css
+
 cp -rf /tmp/jekyll .
-git add .
-git commit -m "Updated website"
-git push 
+
+#git add .
+#git commit -m "Updated website"
+#git push 
