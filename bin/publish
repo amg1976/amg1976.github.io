@@ -6,4 +6,4 @@ git pull
 cp -rf /tmp/jekyll .
 git add .
 git commit -m "Updated website"
-git push
+git push 
