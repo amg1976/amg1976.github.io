@@ -1,0 +1,9 @@
+jekyll build
+rm -rf /tmp/jekyll
+cp -rf ./_site /tmp/jekyll
+git checkout master
+git pull
+cp -rf /tmp/jekyll .
+git add .
+git commit -m "Updated website"
+git push

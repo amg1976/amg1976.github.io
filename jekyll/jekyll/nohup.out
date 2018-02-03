@@ -1,0 +1,71 @@
+Configuration file: /Users/Shared/Personal/amg1976.github.io/_config.yml
+            Source: /Users/Shared/Personal/amg1976.github.io
+       Destination: /Users/Shared/Personal/amg1976.github.io/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    done in 0.502 seconds.
+RubyDep: WARNING: Your Ruby is outdated/buggy.
+RubyDep: WARNING: Your Ruby is: 2.3.0 (buggy). Recommendation: upgrade to 2.3.1.
+RubyDep: WARNING: (To disable warnings, see:http://github.com/e2/ruby_dep/wiki/Disabling-warnings )
+ Auto-regeneration: enabled for '/Users/Shared/Personal/amg1976.github.io'
+bin/build: line 1: 31702 Terminated: 15          jekyll build --drafts --watch
+Configuration file: /Users/Shared/Personal/amg1976.github.io/_config.yml
+            Source: /Users/Shared/Personal/amg1976.github.io
+       Destination: /Users/Shared/Personal/amg1976.github.io/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    done in 0.4 seconds.
+RubyDep: WARNING: Your Ruby is outdated/buggy.
+RubyDep: WARNING: Your Ruby is: 2.3.0 (buggy). Recommendation: upgrade to 2.3.1.
+RubyDep: WARNING: (To disable warnings, see:http://github.com/e2/ruby_dep/wiki/Disabling-warnings )
+ Auto-regeneration: enabled for '/Users/Shared/Personal/amg1976.github.io'
+     Halting auto-regeneration.
+Configuration file: /Users/Shared/Personal/amg1976.github.io/_config.yml
+            Source: /Users/Shared/Personal/amg1976.github.io
+       Destination: /Users/Shared/Personal/amg1976.github.io/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    done in 0.421 seconds.
+RubyDep: WARNING: Your Ruby is outdated/buggy.
+RubyDep: WARNING: Your Ruby is: 2.3.0 (buggy). Recommendation: upgrade to 2.3.1.
+RubyDep: WARNING: (To disable warnings, see:http://github.com/e2/ruby_dep/wiki/Disabling-warnings )
+ Auto-regeneration: enabled for '/Users/Shared/Personal/amg1976.github.io'
+      Regenerating: 1 file(s) changed at 2018-02-03 13:57:09
+                    _posts/2017-07-03-xcode-missing-protocol-methods.md
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    ...done in 0.221255 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-02-03 13:57:24
+                    bin/build
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    ...done in 0.174479 seconds.
+
+      Regenerating: 2 file(s) changed at 2018-02-03 13:59:43
+                    .gitignore
+                    nohup.out
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    ...done in 0.299661 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-02-03 14:00:16
+                    nohup.out
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    ...done in 0.167308 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-02-03 14:00:26
+                    bin/publish
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    ...done in 0.189468 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-02-03 14:09:37
+                    bin/publish
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    ...done in 0.217094 seconds.
+
+      Regenerating: 1 file(s) changed at 2018-02-03 15:19:45
+                    bin/publish
+[33m     Build Warning: Layout 'nil' requested in atom.xml does not exist.[0m
+                    ...done in 0.212268 seconds.
+
