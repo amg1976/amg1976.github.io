@@ -1,0 +1,1 @@
+nohup jekyll build --drafts --watch &
