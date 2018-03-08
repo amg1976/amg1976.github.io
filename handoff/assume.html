@@ -25,6 +25,12 @@
                             <p></p>
                             <h4>Your token is:</h4>
                             <p></p><textarea class="mobile-token-ta">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6InRlbnRka3hvYW5pNW5kZWJhdGx1IiwicGVybWlzc2lvbiI6eyJyZWFkX29ubHkiOmZhbHNlfX0.C7KFctTVtTVA0VcWKATfpP9e4jLx99GTdmuHTo6rZDo</textarea></td>
+
+                    </tr>
+                    <tr>
+                      <td>
+                        <button title="Send to device" onclick="javascript:sendToDevice();">
+                      </td>
                     </tr>
                 </tbody>
             </table>
@@ -38,6 +44,12 @@
         </div>
         <div class="row span2"></div>
     </div>
+    <script type="text/javascript">
+    function sendToDevice() {
+      var token = document.getElementByClassName("mobile-token-ta")[0];
+      alert(token);
+    }
+    </script>
 </body>
 
 </html>
