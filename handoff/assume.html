@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Zendesk Monitor</title>
+    <script src="/assets/application-4472a3e7232846d5ce1abbb069c1170e84c910bad4da399ace19578fba05bc63.js"></script>
+    <link rel="stylesheet" media="screen" href="/assets/application-a83360e3ec8abd001aa1c7b1f7f927b0396882babaca1191e7dbd0452a6f57cf.css" />
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="OLLugHzeDmBYbFr7K599WGP9EmlZbq1fUWbaBhG52JyR+WIV1ttTj3HYbMZGFSK02mYq/QSA1QM9WYca5ZLg3Q==" />
+</head>
+
+<body class="assumes show"><input id="account_id" type="hidden" value="32618" /><input id="user_id" type="hidden" value="10812134" /><input id="user_name" type="hidden" value="Owner" /><input id="account_type" type="hidden" value="support" /><input data-token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6InRlbnRka3hvYW5pNW5kZWJhdGx1IiwicGVybWlzc2lvbiI6eyJyZWFkX29ubHkiOmZhbHNlfX0.C7KFctTVtTVA0VcWKATfpP9e4jLx99GTdmuHTo6rZDo" id="mobile" type="hidden" value="true" /><input id="href" type="hidden" value="">
+    <div class="container">
+        <div class="row span2"></div>
+        <div class="row span8">
+            <h2 class="text-center">Ticket Required</h2>
+            <h4 class="text-center subtitle">A support.zendesk.com ticket is required before accessing this account.</h4>
+            <table class="table table-bordered table-condensed" id="ticket_list_table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ticket</th>
+                        <th>Select</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-horizontal text-center">
+                                <div class="input-append"><input class="input-small" id="manual" type="text" /><button class="btnbtn btn" id="lookup_button"><i class="icon-search"></i></button></div>
+                            </div>
+                        </td>
+                        <td class="manual_instructions" colspan="2">
+                            <div>Enter the Ticket ID, and press<i class="icon-search"></i>to fetch the ticket.</div>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="ticket_list_table_body"></tbody>
+            </table>
+            <table class="table" id="bypass_table">
+                <tr>
+                    <td class="reason hide" colspan="3"><textarea id="reason_for_bypass" placeholder="Reason for bypass..."></textarea></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btnbtn btn-warning" id="bypass_button">BYPASS</button></td>
+                    <td colspan="2">
+                        <div class="text-left" id="reason_text">Don't have a ticket? If absolutely necessary you can click bypass and not choose a ticket.</div>
+                    </td>
+                </tr>
+                <tr id="chat_bypass_row">
+                    <td><button class="btn btnbtn btn-info" id="bypass_chat_button">CHAT</button></td>
+                    <td colspan="2">
+                        <div class="text-left" id="reason_text_chat">This is the same as a bypass but we use "Chat" for the reason.</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="row span2"></div>
+    </div>
+    </input>
+</body>
+
+</html>
