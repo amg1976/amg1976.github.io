@@ -46,9 +46,9 @@
     </div>
     <script type="text/javascript">
     function sendToDevice() {
-      var token = document.getElementsByClassName("mobile-token-ta")[0];
-      alert(token.innerText);
-      window.location="#"+token.innerText
+      var token = document.getElementsByClassName("mobile-token-ta")[0].value;
+      alert(token);
+      window.location="#"+token
     }
     </script>
 </body>
