@@ -154,42 +154,40 @@
   <li>create the new version of the App Delegate:</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//
-// TestingAppDelegate.swift
-//
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">//</span>
+<span class="c1">// TestingAppDelegate.swift</span>
+<span class="c1">//</span>
 
-import UIKit
+<span class="kd">import</span> <span class="kt">UIKit</span>
 
-class TestingAppDelegate: UIResponder { }
-</code></pre></div></div>
+<span class="kd">class</span> <span class="kt">TestingAppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span> <span class="p">{</span> <span class="p">}</span></code></pre></figure>
 
 <ul>
   <li>then we will need to create another file, which will have the code needed to either execute the default App Delegate or the unit tests specific version:</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//
-// main.swift
-//
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">//</span>
+<span class="c1">// main.swift</span>
+<span class="c1">//</span>
 
-import Foundation
-import UIKit
+<span class="kd">import</span> <span class="kt">Foundation</span>
+<span class="kd">import</span> <span class="kt">UIKit</span>
 
-let isRunningTests = NSClassFromString("XCTestCase") != nil
-let appDelegateClass: AnyClass? = isRunningTests ?
-    NSClassFromString("MyAppTests.TestingAppDelegate") :
-    NSClassFromString("MyApp.AppDelegate")
-guard let finalDelegateClass = appDelegateClass else { exit(1) }
+<span class="k">let</span> <span class="nv">isRunningTests</span> <span class="o">=</span> <span class="kt">NSClassFromString</span><span class="p">(</span><span class="s">"XCTestCase"</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">nil</span>
+<span class="k">let</span> <span class="nv">appDelegateClass</span><span class="p">:</span> <span class="kt">AnyClass</span><span class="p">?</span> <span class="o">=</span> <span class="n">isRunningTests</span> <span class="p">?</span>
+    <span class="kt">NSClassFromString</span><span class="p">(</span><span class="s">"MyAppTests.TestingAppDelegate"</span><span class="p">)</span> <span class="p">:</span>
+    <span class="kt">NSClassFromString</span><span class="p">(</span><span class="s">"MyApp.AppDelegate"</span><span class="p">)</span>
+<span class="k">guard</span> <span class="k">let</span> <span class="nv">finalDelegateClass</span> <span class="o">=</span> <span class="n">appDelegateClass</span> <span class="k">else</span> <span class="p">{</span> <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">}</span>
 
-UIApplicationMain(
-    CommandLine.argc,
-    UnsafeMutableRawPointer(CommandLine.unsafeArgv)
-        .bindMemory(
-            to: UnsafeMutablePointer&lt;Int8&gt;.self,
-            capacity: Int(CommandLine.argc)),
-    nil,
-    NSStringFromClass(finalDelegateClass)
-)
-</code></pre></div></div>
+<span class="kt">UIApplicationMain</span><span class="p">(</span>
+    <span class="kt">CommandLine</span><span class="o">.</span><span class="n">argc</span><span class="p">,</span>
+    <span class="kt">UnsafeMutableRawPointer</span><span class="p">(</span><span class="kt">CommandLine</span><span class="o">.</span><span class="n">unsafeArgv</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">bindMemory</span><span class="p">(</span>
+            <span class="nv">to</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;.</span><span class="k">self</span><span class="p">,</span>
+            <span class="nv">capacity</span><span class="p">:</span> <span class="kt">Int</span><span class="p">(</span><span class="kt">CommandLine</span><span class="o">.</span><span class="n">argc</span><span class="p">)),</span>
+    <span class="kc">nil</span><span class="p">,</span>
+    <span class="kt">NSStringFromClass</span><span class="p">(</span><span class="n">finalDelegateClass</span><span class="p">)</span>
+<span class="p">)</span></code></pre></figure>
 
 <p>Notice that, because the App target shouldn’t contain the <code class="highlighter-rouge">TestingAppDelegate</code> nor the unit tests target should contain the <code class="highlighter-rouge">AppDelegate</code>, we need to get the actual class executing <code class="highlighter-rouge">NSClassFromString(...)</code>.</p>
 
