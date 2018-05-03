@@ -4,7 +4,7 @@
  <title>Adri</title>
  <link href="https://amg1976.github.io/atom.xml" rel="self"/>
  <link href="https://amg1976.github.io/"/>
- <updated>2018-02-03T12:49:54+00:00</updated>
+ <updated>2018-05-03T22:14:55+01:00</updated>
  <id>https://amg1976.github.io</id>
  <author>
    <foo></foo>
@@ -14,11 +14,93 @@
 
  
  <entry>
+   <title>Improving Xcode code coverage report</title>
+   <link href="https://amg1976.github.io/blog/2018/05/03/improving-xcode-coverage/"/>
+   <updated>2018-05-03T00:00:00+01:00</updated>
+   <id>https://amg1976.github.io/blog/2018/05/03/improving-xcode-coverage</id>
+   <content type="html">&lt;h3 id=&quot;improving-xcode-code-coverage-report&quot;&gt;Improving Xcode code coverage report&lt;/h3&gt;
+&lt;p&gt;When writing unit tests, we should try to exercise all the scenarios and edge cases of the piece of code we are working on. I believe we should try to write them based only on the public contract of the methods and classes and what we know about how that code should work.&lt;/p&gt;
+
+&lt;p&gt;Once you have those tests, you can then look at the actual code being tested and look for special or edge cases that might not being exercised by the initial set of tests. There is one tool in Xcode that can help us detecting those areas that need further testing - Code Coverage reports.&lt;/p&gt;
+
+&lt;h5 id=&quot;enabling-code-coverage&quot;&gt;Enabling Code Coverage&lt;/h5&gt;
+&lt;p&gt;Enabling Code Coverage in Xcode is very simple:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Edit scheme &amp;gt; Test &amp;gt; Options &amp;gt; Gather coverage&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We can choose to gather coverage for all targets or just select individual targets, depending on the project structure. Once enabled, every time we run the unit tests, we will get a nice report of all the classes and methods in the selected targets, and what percentage of that code is covered by unit tests.&lt;/p&gt;
+
+&lt;h5 id=&quot;what-do-we-want-to-fix&quot;&gt;What do we want to fix&lt;/h5&gt;
+
+&lt;p&gt;However, there is one issue with this report: depending on the type of project and how it is setup, it is possible to have wrong code coverage reports. For Framework projects this shouldn’t be an issue, but for an App project where usually we import the App module as testable into the test cases, like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@testable import MyApp&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;when we run the tests, any class or method that is executed when launching the app will also show up in the Code Coverage reports, even if there is no explicit test case that executed that code.&lt;/p&gt;
+
+&lt;h5 id=&quot;replacing-the-appdelegate&quot;&gt;Replacing the AppDelegate&lt;/h5&gt;
+
+&lt;p&gt;As pointed &lt;a href=&quot;http://cleanswifter.com/broken-code-coverage-xcode-fix/&quot;&gt;here&lt;/a&gt;, one possible solution to this issue is replacing the App Delegate with a special version just for unit tests, which will do… nothing! Instead of instantiating the original App Delegate, which should be responsible amongst other things for preparing and showing the window and initial view controller, we will instruct the runtime to execute a special version of the App Delegate.&lt;/p&gt;
+
+&lt;p&gt;To do so, we will need to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;create the new version of the App Delegate:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//
+// TestingAppDelegate.swift
+//
+
+import UIKit
+
+class TestingAppDelegate: UIResponder { }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;then we will need to create another file, which will have the code needed to either execute the default App Delegate or the unit tests specific version:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//
+// main.swift
+//
+
+import Foundation
+import UIKit
+
+let isRunningTests = NSClassFromString(&quot;XCTestCase&quot;) != nil
+let appDelegateClass: AnyClass? = isRunningTests ?
+    NSClassFromString(&quot;MyAppTests.TestingAppDelegate&quot;) :
+    NSClassFromString(&quot;MyApp.AppDelegate&quot;)
+guard let finalDelegateClass = appDelegateClass else { exit(1) }
+
+UIApplicationMain(
+    CommandLine.argc,
+    UnsafeMutableRawPointer(CommandLine.unsafeArgv)
+        .bindMemory(
+            to: UnsafeMutablePointer&amp;lt;Int8&amp;gt;.self,
+            capacity: Int(CommandLine.argc)),
+    nil,
+    NSStringFromClass(finalDelegateClass)
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice that, because the App target shouldn’t contain the &lt;code class=&quot;highlighter-rouge&quot;&gt;TestingAppDelegate&lt;/code&gt; nor the unit tests target should contain the &lt;code class=&quot;highlighter-rouge&quot;&gt;AppDelegate&lt;/code&gt;, we need to get the actual class executing &lt;code class=&quot;highlighter-rouge&quot;&gt;NSClassFromString(...)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;now it should be possible to run the unit tests and have correct coverage reports.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>Xcode and the case of the missing protocol methods</title>
    <link href="https://amg1976.github.io/blog/2017/07/03/xcode-missing-protocol-methods/"/>
    <updated>2017-07-03T23:30:00+01:00</updated>
    <id>https://amg1976.github.io/blog/2017/07/03/xcode-missing-protocol-methods</id>
-   <content type="html">&lt;p&gt;Aaa few days ago I run into an odd issue, where I was trying to mock UserDefaults, in order to add some unit tests to a class in our app. I went with this approach as at the time it looked like the easiest approach, so I could add the unit tests and at the same time I didn’t need to immediately change the implementation of the class, as it depends directly on the UserDefaults class. Sure, maybe the best option probably would have been defining a protocol with the methods we use in that class, and then the changes on the class would be minimal, but the fact was that it looked like the quick and easiest option to go with at the time.&lt;/p&gt;
+   <content type="html">&lt;p&gt;A few days ago I run into an odd issue, where I was trying to mock UserDefaults, in order to add some unit tests to a class in our app. I went with this approach as at the time it looked like the easiest approach, so I could add the unit tests and at the same time I didn’t need to immediately change the implementation of the class, as it depends directly on the UserDefaults class. Sure, maybe the best option probably would have been defining a protocol with the methods we use in that class, and then the changes on the class would be minimal, but the fact was that it looked like the quick and easiest option to go with at the time.&lt;/p&gt;
 
 &lt;p&gt;So, the methods that our class uses from UserDefaults are the following:&lt;/p&gt;
 
@@ -120,39 +202,6 @@
 &lt;p&gt;And that’s it, it was a great event, with lots of new and cool stuff, that I can’t wait to put my hands on!&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;PS: is it just me, or the actual presentations were not up to the higher standards that we are used to in these events? They didn’t seem well prepared, lots of hesitations from the presenters… by all means, this is not a critic - specially from me, as I’m a terrible public presenter! - just a small comment, as we know Apple always try to have flawless presentations.&lt;/em&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Swagger for generating Swift APIs</title>
-   <link href="https://amg1976.github.io/blog/2017/06/09/swagger-and-swift/"/>
-   <updated>2017-06-09T22:00:00+01:00</updated>
-   <id>https://amg1976.github.io/blog/2017/06/09/swagger-and-swift</id>
-   <content type="html">&lt;h3 id=&quot;what-is-swagger&quot;&gt;What is Swagger&lt;/h3&gt;
-&lt;h5 id=&quot;introduction&quot;&gt;Introduction&lt;/h5&gt;
-&lt;ul&gt;
-  &lt;li&gt;What it is&lt;/li&gt;
-  &lt;li&gt;Main reasons for using it&lt;/li&gt;
-  &lt;li&gt;Example output&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;spotlight&quot;&gt;Spotlight&lt;/h5&gt;
-&lt;ul&gt;
-  &lt;li&gt;What it is&lt;/li&gt;
-  &lt;li&gt;Example of how to use&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;swagger-cli-tools&quot;&gt;Swagger CLI tools&lt;/h5&gt;
-&lt;ul&gt;
-  &lt;li&gt;What they are&lt;/li&gt;
-  &lt;li&gt;Example of usage&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h5&gt;
-&lt;ul&gt;
-  &lt;li&gt;Benefits&lt;/li&gt;
-  &lt;li&gt;Problems&lt;/li&gt;
-&lt;/ul&gt;
 </content>
  </entry>
  
