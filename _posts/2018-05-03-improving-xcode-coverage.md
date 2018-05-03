@@ -32,7 +32,7 @@ To do so, we will need to:
 
 - create the new version of the App Delegate:
 
-```
+{% highlight swift %}
 //
 // TestingAppDelegate.swift
 //
@@ -40,11 +40,11 @@ To do so, we will need to:
 import UIKit
 
 class TestingAppDelegate: UIResponder { }
-```
+{% endhighlight %}
 
 - then we will need to create another file, which will have the code needed to either execute the default App Delegate or the unit tests specific version:
 
-```
+{% highlight swift %}
 //
 // main.swift
 //
@@ -67,7 +67,7 @@ UIApplicationMain(
     nil,
     NSStringFromClass(finalDelegateClass)
 )
-```
+{% endhighlight %}
 
 Notice that, because the App target shouldn't contain the `TestingAppDelegate` nor the unit tests target should contain the `AppDelegate`, we need to get the actual class executing `NSClassFromString(...)`.
 
