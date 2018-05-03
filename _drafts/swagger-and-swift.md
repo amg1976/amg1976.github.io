@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Swagger for generating Swift APIs"
-date:   2017-06-09 21:00:00 +0000
 categories: blog
+tags: []
 ---
 ### What is Swagger
 ##### Introduction
