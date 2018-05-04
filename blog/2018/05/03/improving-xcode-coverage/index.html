@@ -163,7 +163,13 @@
 <span class="kd">class</span> <span class="kt">TestingAppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span> <span class="p">{</span> <span class="p">}</span></code></pre></figure>
 
 <ul>
-  <li>then we will need to create another file, which will have the code needed to either execute the default App Delegate or the unit tests specific version:</li>
+  <li>then check if our original <code class="highlighter-rouge">AppDelegate</code> contains this attribute and remove it - it declares that the class where it is being used is the application delegate, but because we will provide our own <code class="highlighter-rouge">main.swift</code> this should be removed:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">@UIApplicationMain</span></code></pre></figure>
+
+<ul>
+  <li>we will also need to create another file, which will have the code needed to either execute the default App Delegate or the unit tests specific version:</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">//</span>
@@ -195,7 +201,11 @@
   <li>now it should be possible to run the unit tests and have correct coverage reports.</li>
 </ul>
 
+<p><em>(tested with Xcode 9.3 and Swift 4.1)</em></p>
+
 <p>Thanks for reading!</p>
+
+<p><em>Updated 2018-05-04: added mention to the fact that we need to remove the <code class="highlighter-rouge">@UIApplicationMain</code> attribute.</em></p>
 
 </div>
 
