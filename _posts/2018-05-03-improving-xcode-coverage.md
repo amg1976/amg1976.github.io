@@ -40,9 +40,16 @@ To do so, we will need to:
 import UIKit
 
 class TestingAppDelegate: UIResponder { }
+
 {% endhighlight %}
 
-- then we will need to create another file, which will have the code needed to either execute the default App Delegate or the unit tests specific version:
+- then check if our original `AppDelegate` contains this attribute and remove it - it declares that the class where it is being used is the application delegate, but because we will provide our own `main.swift` this should be removed:
+
+{% highlight swift %}
+@UIApplicationMain
+{% endhighlight %}
+
+- we will also need to create another file, which will have the code needed to either execute the default App Delegate or the unit tests specific version:
 
 {% highlight swift %}
 //
@@ -73,4 +80,8 @@ Notice that, because the App target shouldn't contain the `TestingAppDelegate` n
 
 - now it should be possible to run the unit tests and have correct coverage reports.
 
+_(tested with Xcode 9.3 and Swift 4.1)_
+
 Thanks for reading!
+
+_Updated 2018-05-04: added mention to the fact that we need to remove the `@UIApplicationMain` attribute._
