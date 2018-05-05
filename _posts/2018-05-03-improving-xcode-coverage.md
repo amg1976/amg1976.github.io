@@ -7,7 +7,7 @@ tags: [xcode, code coverage, unit tests, app delegate]
 ### Improving Xcode code coverage report
 When writing unit tests, we should try to exercise all the scenarios and edge cases of the piece of code we are working on. I believe we should try to write them based only on the public contract of the methods and classes and what we know about how that code should work.
 
-Once you have those tests, you can then look at the actual code being tested and look for special or edge cases that might not being exercised by the initial set of tests. There is one tool in Xcode that can help us detecting those areas that need further testing - Code Coverage reports.
+Once you have those tests, you can then look at the actual code being tested and look for special or edge cases that might not be getting exercised by the initial set of tests. There is one tool in Xcode that can help us detect those areas that need further testing - Code Coverage reports.
 
 ##### Enabling Code Coverage
 Enabling Code Coverage in Xcode is very simple:
@@ -18,7 +18,7 @@ We can choose to gather coverage for all targets or just select individual targe
 
 ##### What do we want to fix
 
-However, there is one issue with this report: depending on the type of project and how it is setup, it is possible to have wrong code coverage reports. For Framework projects this shouldn't be an issue, but for an App project where usually we import the App module as testable into the test cases, like this:
+However, there is one issue with this report: depending on the type of project and how it is set up, it is possible to have wrong code coverage reports. For Framework projects this shouldn't be an issue, but for an App project where usually we import the App module as testable into the test cases, like this:
 
 ```@testable import MyApp```
 
