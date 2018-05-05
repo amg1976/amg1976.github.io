@@ -127,7 +127,7 @@
   <h3 id="improving-xcode-code-coverage-report">Improving Xcode code coverage report</h3>
 <p>When writing unit tests, we should try to exercise all the scenarios and edge cases of the piece of code we are working on. I believe we should try to write them based only on the public contract of the methods and classes and what we know about how that code should work.</p>
 
-<p>Once you have those tests, you can then look at the actual code being tested and look for special or edge cases that might not being exercised by the initial set of tests. There is one tool in Xcode that can help us detecting those areas that need further testing - Code Coverage reports.</p>
+<p>Once you have those tests, you can then look at the actual code being tested and look for special or edge cases that might not be getting exercised by the initial set of tests. There is one tool in Xcode that can help us detect those areas that need further testing - Code Coverage reports.</p>
 
 <h5 id="enabling-code-coverage">Enabling Code Coverage</h5>
 <p>Enabling Code Coverage in Xcode is very simple:</p>
@@ -138,7 +138,7 @@
 
 <h5 id="what-do-we-want-to-fix">What do we want to fix</h5>
 
-<p>However, there is one issue with this report: depending on the type of project and how it is setup, it is possible to have wrong code coverage reports. For Framework projects this shouldn’t be an issue, but for an App project where usually we import the App module as testable into the test cases, like this:</p>
+<p>However, there is one issue with this report: depending on the type of project and how it’s setup, it is possible to have wrong code coverage reports. For Framework projects this shouldn’t be an issue, but for an App project where usually we import the App module as testable into the test cases, like this:</p>
 
 <p><code class="highlighter-rouge">@testable import MyApp</code></p>
 
