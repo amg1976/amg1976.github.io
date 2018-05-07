@@ -111,6 +111,10 @@
           
         
       
+        
+          
+        
+      
 
     </ul>
 
@@ -124,95 +128,20 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/blog/2018/05/03/improving-xcode-coverage/">
-        Improving Xcode code coverage report
+      <a href="/blog/2018/05/07/what-to-expect-from-an-agile-coach/">
+        What to expect from an Agile Coach?
       </a>
     </h1>
 
-    <span class="post-date">03 May 2018</span>
-    <span class="post-tags">app delegate, code coverage, unit tests, xcode</span>
-    <h3 id="improving-xcode-code-coverage-report">Improving Xcode code coverage report</h3>
-<p>When writing unit tests, we should try to exercise all the scenarios and edge cases of the piece of code we are working on. I believe we should try to write them based only on the public contract of the methods and classes and what we know about how that code should work.</p>
+    <span class="post-date">07 May 2018</span>
+    <span class="post-tags">agile scrum kanban backlog estimation</span>
+    <p>This question was asked by my team manager. I believe the team has some knowledge of the Agile methodologies, but maybe not enough to use them in an effective manner. I guess the first evidence is that we bounce between Scrum and Kanban, and probably neither of them are being done correctly.</p>
 
-<p>Once you have those tests, you can then look at the actual code being tested and look for special or edge cases that might not be getting exercised by the initial set of tests. There is one tool in Xcode that can help us detect those areas that need further testing - Code Coverage reports.</p>
+<p>Another issue, which probably is more evident to the managers as they need to report progress and estimation to the higher ranks, is that we don’t know what is our velocity, we don’t have an idea how much we can deliver in each Sprint. We have done estimation in the past but then we just stopped doing it because we weren’t actually tracking how accurate they were and how trustworthy they could be to perform any kind of estimation for future work. We started recently to do estimation again, so let’s see how it goes.</p>
 
-<h5 id="enabling-code-coverage">Enabling Code Coverage</h5>
-<p>Enabling Code Coverage in Xcode is very simple:</p>
+<p>Also, the backlog becomes very quickly out of control, especially with bugs (sometimes duplicates) and tech debt stories - at some point, our new product manager just decided to archive them all and start fresh!</p>
 
-<p><code class="highlighter-rouge">Edit scheme &gt; Test &gt; Options &gt; Gather coverage</code></p>
-
-<p>We can choose to gather coverage for all targets or just select individual targets, depending on the project structure. Once enabled, every time we run the unit tests, we will get a nice report of all the classes and methods in the selected targets, and what percentage of that code is covered by unit tests.</p>
-
-<h5 id="what-do-we-want-to-fix">What do we want to fix</h5>
-
-<p>However, there is one issue with this report: depending on the type of project and how it’s setup, it is possible to have wrong code coverage reports. For Framework projects this shouldn’t be an issue, but for an App project where usually we import the App module as testable into the test cases, like this:</p>
-
-<p><code class="highlighter-rouge">@testable import MyApp</code></p>
-
-<p>when we run the tests, any class or method that is executed when launching the app will also show up in the Code Coverage reports, even if there is no explicit test case that executed that code.</p>
-
-<h5 id="replacing-the-appdelegate">Replacing the AppDelegate</h5>
-
-<p>As pointed <a href="http://cleanswifter.com/broken-code-coverage-xcode-fix/">here</a>, one possible solution to this issue is replacing the App Delegate with a special version just for unit tests, which will do… nothing! Instead of instantiating the original App Delegate, which should be responsible amongst other things for preparing and showing the window and initial view controller, we will instruct the runtime to execute a special version of the App Delegate.</p>
-
-<p>To do so, we will need to:</p>
-
-<ul>
-  <li>create the new version of the App Delegate:</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">//</span>
-<span class="c1">// TestingAppDelegate.swift</span>
-<span class="c1">//</span>
-
-<span class="kd">import</span> <span class="kt">UIKit</span>
-
-<span class="kd">class</span> <span class="kt">TestingAppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span> <span class="p">{</span> <span class="p">}</span></code></pre></figure>
-
-<ul>
-  <li>then check if our original <code class="highlighter-rouge">AppDelegate</code> contains this attribute and remove it - it declares that the class where it is being used is the application delegate, but because we will provide our own <code class="highlighter-rouge">main.swift</code> this should be removed:</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">@UIApplicationMain</span></code></pre></figure>
-
-<ul>
-  <li>we will also need to create another file, which will have the code needed to either execute the default App Delegate or the unit tests specific version:</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">//</span>
-<span class="c1">// main.swift</span>
-<span class="c1">//</span>
-
-<span class="kd">import</span> <span class="kt">Foundation</span>
-<span class="kd">import</span> <span class="kt">UIKit</span>
-
-<span class="k">let</span> <span class="nv">isRunningTests</span> <span class="o">=</span> <span class="kt">NSClassFromString</span><span class="p">(</span><span class="s">"XCTestCase"</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">nil</span>
-<span class="k">let</span> <span class="nv">appDelegateClass</span><span class="p">:</span> <span class="kt">AnyClass</span><span class="p">?</span> <span class="o">=</span> <span class="n">isRunningTests</span> <span class="p">?</span>
-    <span class="kt">NSClassFromString</span><span class="p">(</span><span class="s">"MyAppTests.TestingAppDelegate"</span><span class="p">)</span> <span class="p">:</span>
-    <span class="kt">NSClassFromString</span><span class="p">(</span><span class="s">"MyApp.AppDelegate"</span><span class="p">)</span>
-<span class="k">guard</span> <span class="k">let</span> <span class="nv">finalDelegateClass</span> <span class="o">=</span> <span class="n">appDelegateClass</span> <span class="k">else</span> <span class="p">{</span> <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">}</span>
-
-<span class="kt">UIApplicationMain</span><span class="p">(</span>
-    <span class="kt">CommandLine</span><span class="o">.</span><span class="n">argc</span><span class="p">,</span>
-    <span class="kt">UnsafeMutableRawPointer</span><span class="p">(</span><span class="kt">CommandLine</span><span class="o">.</span><span class="n">unsafeArgv</span><span class="p">)</span>
-        <span class="o">.</span><span class="nf">bindMemory</span><span class="p">(</span>
-            <span class="nv">to</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;.</span><span class="k">self</span><span class="p">,</span>
-            <span class="nv">capacity</span><span class="p">:</span> <span class="kt">Int</span><span class="p">(</span><span class="kt">CommandLine</span><span class="o">.</span><span class="n">argc</span><span class="p">)),</span>
-    <span class="kc">nil</span><span class="p">,</span>
-    <span class="kt">NSStringFromClass</span><span class="p">(</span><span class="n">finalDelegateClass</span><span class="p">)</span>
-<span class="p">)</span></code></pre></figure>
-
-<p>Notice that, because the App target shouldn’t contain the <code class="highlighter-rouge">TestingAppDelegate</code> nor the unit tests target should contain the <code class="highlighter-rouge">AppDelegate</code>, we need to get the actual class executing <code class="highlighter-rouge">NSClassFromString(...)</code>.</p>
-
-<ul>
-  <li>now it should be possible to run the unit tests and have correct coverage reports.</li>
-</ul>
-
-<p><em>(tested with Xcode 9.3 and Swift 4.1)</em></p>
-
-<p>Thanks for reading!</p>
-
-<p><em>Updated 2018-05-04: added mention to the fact that we need to remove the <code class="highlighter-rouge">@UIApplicationMain</code> attribute.</em></p>
+<p>So, answering the question, I would expect a Coach that has enough knowledge about the different approaches to Agile software development (which probably any coach does) but most of all, I would like to have someone with the capacity to understand the team dynamics, how we want to balance feature / tech debt / R&amp;D work, and can provide us with a basic framework of how to achieve that balance, along with some guidelines on what different directions we can follow to adapt it to an ever-evolving team.</p>
 
   </div>
   

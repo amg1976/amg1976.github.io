@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Adri</title>
- <link href="https://amg1976.github.io/atom.xml" rel="self"/>
- <link href="https://amg1976.github.io/"/>
- <updated>2018-05-05T19:01:11+01:00</updated>
- <id>https://amg1976.github.io</id>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2018-05-07T22:00:10+01:00</updated>
+ <id>http://localhost:4000</id>
  <author>
    <foo></foo>
    <name>Adriano Goncalves</name>
@@ -14,10 +14,25 @@
 
  
  <entry>
+   <title>What to expect from an Agile Coach?</title>
+   <link href="http://localhost:4000/blog/2018/05/07/what-to-expect-from-an-agile-coach/"/>
+   <updated>2018-05-07T00:00:00+01:00</updated>
+   <id>http://localhost:4000/blog/2018/05/07/what-to-expect-from-an-agile-coach</id>
+   <content type="html">&lt;p&gt;This question was asked by my team manager. I believe the team has some knowledge of the Agile methodologies, but maybe not enough to use them in an effective manner. I guess the first evidence is that we bounce between Scrum and Kanban, and probably neither of them are being done correctly.&lt;/p&gt;
+
+&lt;p&gt;Another issue, which probably is more evident to the managers as they need to report progress and estimation to the higher ranks, is that we don’t know what is our velocity, we don’t have an idea how much we can deliver in each Sprint. We have done estimation in the past but then we just stopped doing it because we weren’t actually tracking how accurate they were and how trustworthy they could be to perform any kind of estimation for future work. We started recently to do estimation again, so let’s see how it goes.&lt;/p&gt;
+
+&lt;p&gt;Also, the backlog becomes very quickly out of control, especially with bugs (sometimes duplicates) and tech debt stories - at some point, our new product manager just decided to archive them all and start fresh!&lt;/p&gt;
+
+&lt;p&gt;So, answering the question, I would expect a Coach that has enough knowledge about the different approaches to Agile software development (which probably any coach does) but most of all, I would like to have someone with the capacity to understand the team dynamics, how we want to balance feature / tech debt / R&amp;amp;D work, and can provide us with a basic framework of how to achieve that balance, along with some guidelines on what different directions we can follow to adapt it to an ever-evolving team.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>Improving Xcode code coverage report</title>
-   <link href="https://amg1976.github.io/blog/2018/05/03/improving-xcode-coverage/"/>
+   <link href="http://localhost:4000/blog/2018/05/03/improving-xcode-coverage/"/>
    <updated>2018-05-03T00:00:00+01:00</updated>
-   <id>https://amg1976.github.io/blog/2018/05/03/improving-xcode-coverage</id>
+   <id>http://localhost:4000/blog/2018/05/03/improving-xcode-coverage</id>
    <content type="html">&lt;h3 id=&quot;improving-xcode-code-coverage-report&quot;&gt;Improving Xcode code coverage report&lt;/h3&gt;
 &lt;p&gt;When writing unit tests, we should try to exercise all the scenarios and edge cases of the piece of code we are working on. I believe we should try to write them based only on the public contract of the methods and classes and what we know about how that code should work.&lt;/p&gt;
 
@@ -32,7 +47,7 @@
 
 &lt;h5 id=&quot;what-do-we-want-to-fix&quot;&gt;What do we want to fix&lt;/h5&gt;
 
-&lt;p&gt;However, there is one issue with this report: depending on the type of project and how it’s setup, it is possible to have wrong code coverage reports. For Framework projects this shouldn’t be an issue, but for an App project where usually we import the App module as testable into the test cases, like this:&lt;/p&gt;
+&lt;p&gt;However, there is one issue with this report: depending on the type of project and how it is set up, it is possible to have wrong code coverage reports. For Framework projects this shouldn’t be an issue, but for an App project where usually we import the App module as testable into the test cases, like this:&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@testable import MyApp&lt;/code&gt;&lt;/p&gt;
 
@@ -105,9 +120,9 @@
  
  <entry>
    <title>Xcode and the case of the missing protocol methods</title>
-   <link href="https://amg1976.github.io/blog/2017/07/03/xcode-missing-protocol-methods/"/>
+   <link href="http://localhost:4000/blog/2017/07/03/xcode-missing-protocol-methods/"/>
    <updated>2017-07-03T23:30:00+01:00</updated>
-   <id>https://amg1976.github.io/blog/2017/07/03/xcode-missing-protocol-methods</id>
+   <id>http://localhost:4000/blog/2017/07/03/xcode-missing-protocol-methods</id>
    <content type="html">&lt;p&gt;A few days ago I run into an odd issue, where I was trying to mock UserDefaults, in order to add some unit tests to a class in our app. I went with this approach as at the time it looked like the easiest approach, so I could add the unit tests and at the same time I didn’t need to immediately change the implementation of the class, as it depends directly on the UserDefaults class. Sure, maybe the best option probably would have been defining a protocol with the methods we use in that class, and then the changes on the class would be minimal, but the fact was that it looked like the quick and easiest option to go with at the time.&lt;/p&gt;
 
 &lt;p&gt;So, the methods that our class uses from UserDefaults are the following:&lt;/p&gt;
@@ -165,9 +180,9 @@
  
  <entry>
    <title>WWDC 2017 - lot's of goodies</title>
-   <link href="https://amg1976.github.io/blog/2017/06/28/wwdc-2017-review/"/>
+   <link href="http://localhost:4000/blog/2017/06/28/wwdc-2017-review/"/>
    <updated>2017-06-28T17:00:00+01:00</updated>
-   <id>https://amg1976.github.io/blog/2017/06/28/wwdc-2017-review</id>
+   <id>http://localhost:4000/blog/2017/06/28/wwdc-2017-review</id>
    <content type="html">&lt;p&gt;A couple of weeks have gone by since the closing curtains on this years WWDC, and in my opinion, what a great event it was.&lt;/p&gt;
 
 &lt;p&gt;Now, I still need to catch up with some of the session videos, but having seen most of the ones in my playlist, there are some considerations that I’m ready to make.&lt;/p&gt;
@@ -215,9 +230,9 @@
  
  <entry>
    <title>WWDC 2017 - what to expect</title>
-   <link href="https://amg1976.github.io/blog/2017/06/02/what-to-expect-wwdc-2017/"/>
+   <link href="http://localhost:4000/blog/2017/06/02/what-to-expect-wwdc-2017/"/>
    <updated>2017-06-02T22:00:00+01:00</updated>
-   <id>https://amg1976.github.io/blog/2017/06/02/what-to-expect-wwdc-2017</id>
+   <id>http://localhost:4000/blog/2017/06/02/what-to-expect-wwdc-2017</id>
    <content type="html">&lt;p&gt;It’s almost that time of the year where the Apple developers community has its biggest event - the WWDC.&lt;/p&gt;
 
 &lt;p&gt;This year as usual, the expectation is around what new features the latest version of iOS will bring us, and maybe some hints to what is the future in terms of devices.&lt;/p&gt;
@@ -254,18 +269,18 @@
  
  <entry>
    <title>Maybe not</title>
-   <link href="https://amg1976.github.io/blog/2017/05/23/maybe-not/"/>
+   <link href="http://localhost:4000/blog/2017/05/23/maybe-not/"/>
    <updated>2017-05-23T22:00:00+01:00</updated>
-   <id>https://amg1976.github.io/blog/2017/05/23/maybe-not</id>
+   <id>http://localhost:4000/blog/2017/05/23/maybe-not</id>
    <content type="html">&lt;p&gt;Well, after all, maybe I wasn’t &lt;a href=&quot;/blog/2017/02/13/first-post/&quot;&gt;that&lt;/a&gt; involved yet…&lt;/p&gt;
 </content>
  </entry>
  
  <entry>
    <title>First post</title>
-   <link href="https://amg1976.github.io/blog/2017/02/13/first-post/"/>
+   <link href="http://localhost:4000/blog/2017/02/13/first-post/"/>
    <updated>2017-02-13T22:30:00+00:00</updated>
-   <id>https://amg1976.github.io/blog/2017/02/13/first-post</id>
+   <id>http://localhost:4000/blog/2017/02/13/first-post</id>
    <content type="html">&lt;p&gt;This is my first 100th post.&lt;/p&gt;
 
 &lt;p&gt;I am, however, really focused in getting this moving forward. First, because the platform where I’m hosting this website reminds me of my web developer days. Not that I don’t like working as a mobile developer, but it is nice having a break in Xcode, Swift, Certificates and everything else.&lt;/p&gt;
