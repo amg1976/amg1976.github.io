@@ -2,7 +2,7 @@
 layout: post
 title: What to expect from an Agile Coach?
 categories: blog
-tags: [agile scrum kanban backlog estimation]
+tags: [agile, scrum, kanban, backlog, estimation]
 ---
 
 This question was asked by my team manager. I believe the team has some knowledge of the Agile methodologies, but maybe not enough to use them in an effective manner. I guess the first evidence is that we bounce between Scrum and Kanban, and probably neither of them are being done correctly.
