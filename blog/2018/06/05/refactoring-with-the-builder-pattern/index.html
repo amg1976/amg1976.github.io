@@ -10,7 +10,7 @@
 
   <title>
     
-      Home &middot; Adri
+      Refactoring with the Builder pattern &middot; Adri
     
   </title>
 
@@ -39,7 +39,7 @@
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item active">
+      <li class="sidebar-nav-item">
         <a href="/">Home</a>
       </li>
 
@@ -130,18 +130,11 @@
 
 
     <div class="content container">
-      <div class="posts">
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/blog/2018/06/05/refactoring-with-the-builder-pattern/">
-        Refactoring with the Builder pattern
-      </a>
-    </h1>
-
-    <span class="post-date">05 Jun 2018</span>
-    <span class="post-tags">builder, patterns, refactoring, xcode</span>
-    <p>There have been some posts shared recently in the community about common software patterns and how they might help you writing code that is better structured and easier to read and maintain. One such pattern is the Builder Pattern. Simply put, applying this pattern allows for easier creation of complex objects, by hiding those complex details from the calling site.</p>
+      <div class="post">
+  <h1 class="post-title">Refactoring with the Builder pattern</h1>
+  <span class="post-date">05 Jun 2018</span>
+  <span class="post-tags">builder, patterns, refactoring, xcode</span>
+  <p>There have been some posts shared recently in the community about common software patterns and how they might help you writing code that is better structured and easier to read and maintain. One such pattern is the Builder Pattern. Simply put, applying this pattern allows for easier creation of complex objects, by hiding those complex details from the calling site.</p>
 
 <h3 id="the-not-so-nice-approach">The not so nice approach</h3>
 <p>In one area of our app we had the following code, responsible for creating two rather similar instances of <code class="highlighter-rouge">UIButton</code>:</p>
@@ -276,17 +269,40 @@
 
 <p>Thanks for reading!</p>
 
-  </div>
-  
 </div>
 
-<div class="pagination">
-  
-    <a class="pagination-item older" href="/blog/page2/">Older</a>
-  
-  
-    <span class="pagination-item newer">Newer</span>
-  
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2018/05/07/what-to-expect-from-an-agile-coach/">
+            What to expect from an Agile Coach?
+            <small>07 May 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2018/05/03/improving-xcode-coverage/">
+            Improving Xcode code coverage report
+            <small>03 May 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2017/07/03/xcode-missing-protocol-methods/">
+            Xcode and the case of the missing protocol methods
+            <small>03 Jul 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
 
     </div>

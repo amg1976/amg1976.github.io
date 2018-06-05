@@ -92,6 +92,12 @@
         
       
         
+      
+        
+          
+        
+      
+        
           
         
       
@@ -128,55 +134,65 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/blog/2017/06/28/wwdc-2017-review/">
-        WWDC 2017 - lot's of goodies
+      <a href="/blog/2017/07/03/xcode-missing-protocol-methods/">
+        Xcode and the case of the missing protocol methods
       </a>
     </h1>
 
-    <span class="post-date">28 Jun 2017</span>
-    <span class="post-tags">ipad, predictions, refactoring, simulator, siri, speaker, swift, wwdc, xcode</span>
-    <p>A couple of weeks have gone by since the closing curtains on this years WWDC, and in my opinion, what a great event it was.</p>
+    <span class="post-date">03 Jul 2017</span>
+    <span class="post-tags">any, mock, nil, protocols, stack trace, subclassing, unit tests, xcode</span>
+    <p>A few days ago I run into an odd issue, where I was trying to mock UserDefaults, in order to add some unit tests to a class in our app. I went with this approach as at the time it looked like the easiest approach, so I could add the unit tests and at the same time I didn’t need to immediately change the implementation of the class, as it depends directly on the UserDefaults class. Sure, maybe the best option probably would have been defining a protocol with the methods we use in that class, and then the changes on the class would be minimal, but the fact was that it looked like the quick and easiest option to go with at the time.</p>
 
-<p>Now, I still need to catch up with some of the session videos, but having seen most of the ones in my playlist, there are some considerations that I’m ready to make.</p>
+<p>So, the methods that our class uses from UserDefaults are the following:</p>
 
-<h3 id="did-i-got-my-predictions-right">Did I got my predictions right?</h3>
-<p>If you missed my previous <a href="/2017-06-02-what-to-expect-wwdc-2017">post</a>, I tried with my guessing hat to come up with some predictions of what Apple have been preparing for us, and I’m glad they were spot on.</p>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="n">forKey</span> <span class="n">defaultName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">forKey</span> <span class="n">defaultName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">removeObject</span><span class="p">(</span><span class="n">forKey</span> <span class="n">defaultName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">object</span><span class="p">(</span><span class="n">forKey</span> <span class="n">defaultName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="p">?</span>
+<span class="kd">func</span> <span class="nf">bool</span><span class="p">(</span><span class="n">forKey</span> <span class="n">defaultName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span>
+<span class="kd">func</span> <span class="nf">synchronize</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre></figure>
 
-<h5 id="swift-refactoring-tools-on-xcode">Swift refactoring tools on Xcode</h5>
-<p>Finally we have Swift refactoring in Xcode 9. Available since the first beta, they even got improved with the second beta, either by fixing issues or by adding new refactorings.</p>
+<p>And so I proceeded and added mock implementations for all of them, using only in-memory internal storage. Then, just to make sure my mock class worked as expected, I added some unit tests for it. And this was where I found a strange behavior. One of the unit tests tried to store nil for a specific key. My first approach was to simply set a nil parameter at the call site, like:</p>
 
-<h5 id="real-multitasking-on-ipad">Real multitasking on iPad</h5>
-<p>This year the iPad received  most of the love. Not that the new multitasking features don’t work on the iPhone, they are of course far less usable (or not available at all) than on devices with bigger screens. It shows that Apple engineers invested a lot of time on this, not only for all the features but how easy it looks to use them in our apps.</p>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">testSettingNilValueRemovesKey</span><span class="p">()</span> <span class="p">{</span>
 
-<h3 id="predictions-from-other-people-obviously-much-clever-than-me">Predictions from other people, obviously much clever than me</h3>
+  <span class="k">let</span> <span class="nv">testString</span> <span class="o">=</span> <span class="s">"BMO"</span>
 
-<h5 id="siri-speaker">Siri Speaker</h5>
-<p>It will only be available in six months time, so what was available were prototypes (probably very close to the final version). Even though, the general comments are that it is a pretty solid device, with excellent sound quality.</p>
+  <span class="k">if</span> <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="n">testString</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span><span class="o">.</span><span class="n">utf8</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">storage</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span>
+    <span class="nf">expect</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="nf">object</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">key</span><span class="p">))</span><span class="o">.</span><span class="nf">notTo</span><span class="p">(</span><span class="nf">beNil</span><span class="p">())</span>
 
-<h5 id="new-ipad-pro-105-inch">New iPad Pro 10.5-inch</h5>
-<p>I only had the chance to play with a 1st gen iPad Pro with a Pencil a couple of weeks ago, but boy, was that fun! The responsiveness of the Pencil together with all that screen estate, coupled with a few well implemented apps made me feel like I was an artist (which I’m obviously not). This new iPad Pro, which I had the opportunity to see live already, looks like a perfect combination of power with usability, and together with the new features from iOS 11, I bet it will bump the sales for sure.</p>
+    <span class="n">storage</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">key</span><span class="p">)</span>
+    <span class="nf">expect</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="nf">object</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">key</span><span class="p">))</span><span class="o">.</span><span class="nf">to</span><span class="p">(</span><span class="nf">beNil</span><span class="p">())</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">assertionFailure</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
-<h5 id="new-layout-of-the-iphones-back-side">New layout of the iPhones back side</h5>
-<p>This one is still to be confirmed, and I haven’t seen or read anything that points to it being a thing, so it remains to be proved.</p>
+<p>But the second expectation on the test was failing! That was weird, as the code of the mock method was fairly simple, just testing the input parameter and if it was, I just removed the key from internal storage.</p>
 
-<h5 id="dark-mode">Dark mode</h5>
-<p>So, it’s not a full dark mode, it’s a feature called “Smart Invert Colors” and it looks like it’s applying a dark background instead of a white one, maintaining the remaining colors. Again, need to have a device with it to properly test it, but it looks like a good start to a full dark theme.</p>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?,</span> <span class="n">forKey</span> <span class="n">defaultName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">guard</span> <span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="n">value</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">internalStorage</span><span class="o">.</span><span class="nf">removeValue</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="n">defaultName</span><span class="p">)</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+  <span class="n">internalStorage</span><span class="p">[</span><span class="n">defaultName</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<span class="p">}</span></code></pre></figure>
 
-<h3 id="other-stuff-i-didnt-remember-or-even-thought-it-would-be-possible-to-happen">Other stuff I didn’t remember or even thought it would be possible to happen</h3>
+<p>That wasn’t making sense and so, instead of calling the method with a nil parameter, I tried  creating a local variable of type Any? and then calling the method with that variable. This time, the test passed. After banging my head against the wall for some time, and with help from @nsomar, we found what was actually happening. We noticed that the stack trace was different between both ways of calling the method - when using a local variable the stack trace showed only one call between invoking the method in the unit test and the method on the mock object but when setting nil as a parameter, we were seeing two method calls between them. Before actually invoking my overridden method on the mock class, another method of the class was being called, namely <code class="highlighter-rouge">set(url:forKey:)</code>, that I did not override on my mock class.</p>
 
-<h4 id="wireless-debugging-and-multiple-simulators">Wireless debugging and multiple simulators</h4>
-<p>This one was a surprise to me, specially because it makes so much sense and still, it was out of my radar for quite some time now. Remote debugging will only work with devices on iOS 11 but you can take advantage of multiple simulators right from Xcode beta 1.</p>
+<p>Why was the call stack being different? What’s the difference between both ways of calling the method <code class="highlighter-rouge">set(data:forKey)</code>? Using the local variable is almost auto explanatory, we were explicitly creating a variable of type <code class="highlighter-rouge">Any?</code> and so the compiler new exactly what method to call.</p>
 
-<h4 id="improved-app-switcher-and-control-center">Improved app switcher and Control Center</h4>
-<p>I have yet to install iOS 11 on a device, but the first impression I got when watching the session where it was introduced was that… I didn’t like it 😔</p>
+<p>But why not with <code class="highlighter-rouge">nil</code>? I can’t find a proper response, other than what we assumed. That <code class="highlighter-rouge">Any</code> is just a keyword, a construct used by the compiler to delay having to deal with whatever is assigned to it. It would be great to find a proper answer to what is happening here, but for now, the key takeaways of this episode:</p>
+<ul>
+  <li>pay more attention to the stack trace, specially the intermediate calls from core APIs, as they can be very helpful in understanding what is happening</li>
+  <li>with Swift, almost never is a best approach to subclass, there are other ways to achieve the goal that are safer and more clean to your codebase</li>
+  <li>the Swift compiler is really smart and it does some amazing things, but sometimes we can and should help him by being more clear and explicit on the types we want to use</li>
+</ul>
 
-<p>First, having the ability to select which items to show on Control Center, together with app switcher on the iPad seems like an overflow of information. I guess Erica Sadun phrased it better than me on this blog <a href="http://ericasadun.com/2017/06/23/holy-war-why-i-utterly-loathe-the-new-app-switcher-in-ios-11/">post</a>.</p>
+<p>Thanks for reading!</p>
 
-<p>Some of my colleagues like it, so I will wait until I have upgraded my device to give a proper opinion.</p>
-
-<p>And that’s it, it was a great event, with lots of new and cool stuff, that I can’t wait to put my hands on!</p>
-
-<p><em>PS: is it just me, or the actual presentations were not up to the higher standards that we are used to in these events? They didn’t seem well prepared, lots of hesitations from the presenters… by all means, this is not a critic - specially from me, as I’m a terrible public presenter! - just a small comment, as we know Apple always try to have flawless presentations.</em></p>
+<p><em>Also, achievement unlocked, this post was written 35.000 ft above sea level, on my way to some deserved holidays in Portugal!</em></p>
 
   </div>
   
