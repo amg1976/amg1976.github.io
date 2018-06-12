@@ -46,7 +46,7 @@ So, we can create an extension of `UIButton` and add a couple of static methods:
 {% highlight swift %}
 extension UIButton {
 
-    static func buildLibrayButton(withTarget target: Any?, action: Selector, for events: UIControlEvents) -> UIButton {
+    static func buildLibraryButton(withTarget target: Any?, action: Selector, for events: UIControlEvents) -> UIButton {
 
         let button = UIButton(type: .custom)
         let image = R.image.icoPhotoLibrary()
